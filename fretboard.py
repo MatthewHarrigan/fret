@@ -21,8 +21,16 @@ def get_index(string, note):
         if note_i == 3:
             return 27
         open_string = 15
-
-    if note_i < open_string:
-        return note_i + 12
+    elif string == 2:
+        if note_i == 7:
+            return 19
+        open_string = 19
+    elif string == 1:
+        if note_i == 0:
+            return 36 
+        open_string = 24 
+        
+    while note_i < open_string:
+        note_i += 12
 
     return note_i
