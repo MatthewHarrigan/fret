@@ -1,11 +1,25 @@
 import unittest
-from fretboard import get_note_index
+from fretboard import get_index
 
 class GetNumberTest(unittest.TestCase):
 
-    def test_getting_low_e(self):
-        self.assertEqual(get_note_index(6, 'E'), 0)
+    def test_get_index(self):
+        # Open E
+        self.assertEqual(get_index(6, 'E'), 12)
 
+        self.assertEqual(get_index(6, 'F'), 1)
+        self.assertEqual(get_index(6, 'D#/Eb'), 11)
+
+        # Open A
+        self.assertEqual(get_index(5, 'A'), 17)
+
+        self.assertEqual(get_index(5, 'F'), 13)
+        self.assertEqual(get_index(5, 'F#/Gb'), 14)
+        self.assertEqual(get_index(5, 'G'), 15)
+        self.assertEqual(get_index(5, 'G#/Ab'), 16)
+        self.assertEqual(get_index(5, 'A'), 17)
+
+        self.assertEqual(get_index(4, 'D'), 22)
 
 if __name__ == '__main__':
     unittest.main()
