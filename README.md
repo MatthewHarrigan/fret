@@ -1,11 +1,9 @@
 Memorise the guitar fretboard in 12 days
 ========================================
 
-Inspired by Guitarist / Teacher Mike Walker (http://www.mike-walker.co.uk/)
-
 You will learn 36 pitches i.e. 3 octaves over 72 positions over 12 days.
-Each day you will learn a new note and get to practise all the other note over
-the previous days.
+Each day you will learn a new note and get to practise all the other notes from
+the previous days (excluding the first day).
 
 How it works:
 * The computer says the name of the note for you play i.e. "5th string E"
@@ -20,11 +18,14 @@ This will play only the new note, first in order from the 6th string down and
 then by random string
 
 Once you are comfortable with the note and its positions you can run the command
-with the --inclusive flag which play all the other note from the previous days
+with the '--inclusive' flag which play all the other note from the previous days
+(not including the first day)
 
     python3 fret.py --day 12 --level beginner --inclusive
 
 If it's getting too easy you can change to level easy, hard or impossible.
+
+Inspired by Guitarist / Teacher Mike Walker (http://www.mike-walker.co.uk/)
 
 The default order is open strings first then the other notes. In Mike Walker's
 terms, planetary and orbital notes. The idea is that each planetary note is next
