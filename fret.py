@@ -159,7 +159,7 @@ class Fret:
                 print (out)
 
 
-                print (display_fretboard(current_string + 1, note))
+                print (display_fretboard(self.string_indices[current_string], note))
 
                 self.say_string_and_note(out, rate)
 

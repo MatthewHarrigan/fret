@@ -55,6 +55,6 @@ class DisplayFretboardTest(unittest.TestCase):
                'g | | | | | | | | | | | | \n'
                'd | | | | | | | | | | | | \n'
                'a | | | | | | | | | | | | \n'
-               'e | | | | | | | | | | | | \n')
+               'e | | | | | | | | | | | | ')
 
         self.assertEqual(display_fretboard(string, note), str)
