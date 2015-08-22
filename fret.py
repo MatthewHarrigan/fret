@@ -1,5 +1,6 @@
 from fretboard.fretboard import get_index
 from list_sound_files.list_sound_files import list_files
+from display_fretboard.display_fretboard import display_fretboard
 from subprocess import call
 import argparse
 import random
@@ -156,6 +157,9 @@ class Fret:
                 out = self.display_string_and_note(current_string, note)
 
                 print (out)
+
+
+                print (display_fretboard(current_string + 1, note))
 
                 self.say_string_and_note(out, rate)
 
