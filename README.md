@@ -7,6 +7,11 @@ You will learn 36 pitches i.e. 3 octaves over 72 positions over 12 days.
 Each day you will learn a new note and get to practise all the other note over
 the previous days.
 
+How it works:
+* The computer says the name of the note for you play i.e. "5th string E"
+* You play the note
+* The correct note at the correct pitch is played back for reference
+
 At the start of your session run:
 
     python3 fret.py --day 1 --level beginner
@@ -17,7 +22,7 @@ then by random string
 Once you are comfortable with the note and its positions you can run the command
 with the --inclusive flag which play all the other note from the previous days
 
-    python3 fret.py --day 1 --level beginner --inclusive
+    python3 fret.py --day 12 --level beginner --inclusive
 
 If it's getting too easy you can change to level easy, hard or impossible.
 
