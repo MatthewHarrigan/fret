@@ -115,11 +115,15 @@ class Fret:
         inclusive = False
 
         parser = argparse.ArgumentParser()
-        parser.add_argument('-d', '--day', default=0, help='the day of your 12 day challenge')
-        parser.add_argument('-l', '--level', default='easy', help='beginner|easy|medium|hard|impossible')
-        parser.add_argument('-i', '--inclusive', help="Whether the session includes previous days' notes",
+        parser.add_argument('-d', '--day', default=0,
+                            help='the day of your 12 day challenge')
+        parser.add_argument('-l', '--level', default='easy',
+                            help='beginner|easy|medium|hard|impossible')
+        parser.add_argument('-i', '--inclusive',
+                            help="Whether the session includes previous days' notes",
                             action="store_true")
-        parser.add_argument('-ns', '--no-sound', help="Don't play note samples", action="store_true")
+        parser.add_argument('-ns', '--no-sound', help="Don't play note samples",
+                            action="store_true")
         args = parser.parse_args()
 
         day = int(args.day)
@@ -136,8 +140,8 @@ class Fret:
 
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
 
-
-        print ("\nDay %s of 12. Today is %s day\n" % (day, self.notes[self.order[day - 1]]) )
+        print ("\nDay %s of 12. Today is %s day\n" % (
+        day, self.notes[self.order[day - 1]]) )
         print (self.notes_by_day() + '\n')
         time.sleep(1)
 
