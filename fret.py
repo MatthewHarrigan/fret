@@ -9,6 +9,8 @@ import time
 from list_sound_files.list_sound_files import list_files
 from fretboard.fretboard import get_index
 
+from config import config
+
 
 class Fret:
     current_note = 0
@@ -19,7 +21,7 @@ class Fret:
     string_indices = [6, 5, 4, 3, 2, 1]
     string = ['6th', '5th', '4th', '3rd', '2nd', '1st']
     strings = [0, 1, 2, 3, 4, 5]
-    order = [0, 3, 5, 7, 10, 1, 4, 6, 8, 9, 11, 2]
+    order = config['order']
     files = []
     sequential_random_index = 0
     index_for_first_six = 0
@@ -75,7 +77,7 @@ class Fret:
         return playback, rand_from, rand_to, rate
 
     def play_sound(self, file, playback):
-        call(["afplay", "sounds/" + file, "-t", playback])
+        call(["afplay", config['sounds_folder'] + file, "-t", playback])
 
     def display_string_and_note(self, current_string, note):
         out = '%s string %s\r' % (self.string[current_string], note)
@@ -108,7 +110,7 @@ class Fret:
     def __init__(self):
         self.strings_tmp = list(self.strings)
 
-        self.files = list_files('sounds', 'Strat P- 52.wav')
+        self.files = list_files(config['sounds_folder'], config['low_e_file'])
 
         inclusive = False
 
