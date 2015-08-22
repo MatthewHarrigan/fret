@@ -69,7 +69,7 @@ class Fret:
             rand_from = 0
             rand_to = 0
             rate = '350'
-        elif args.level == 'chuck_norris':
+        elif args.level == 'impossible' or args.level == 'chuck_norris':
             playback = '0.01'
             rand_from = 0
             rand_to = 0
@@ -119,7 +119,7 @@ class Fret:
         parser.add_argument('-l', '--level', default='easy')
         parser.add_argument('-i', '--inclusive', help="inclusive",
                             action="store_true")
-        parser.add_argument('-s', '--sound', help="sound", action="store_true")
+        parser.add_argument('-ns', '--no-sound', help="sound", action="store_true")
         args = parser.parse_args()
 
         day = int(args.day)
@@ -129,10 +129,10 @@ class Fret:
         else:
             self.inclusive = False
 
-        if args.sound:
-            sound = True
-        else:
+        if args.no_sound:
             sound = False
+        else:
+            sound = True
 
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
 
