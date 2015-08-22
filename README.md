@@ -29,7 +29,7 @@ Inspired by Guitarist / Teacher Mike Walker (http://www.mike-walker.co.uk/)
 
 The default order is open strings first then the other notes. In Mike Walker's
 terms, planetary and orbital notes. The idea is that each planetary note is next
- to and orbital note.
+ to and orbital note. You can change the order in the config.
 
 Also note that you never play an open string; play the note at the 12 fret instead.
 
@@ -39,7 +39,7 @@ Installation
 Requires
 * OS X only
 * python 3 (though it seems to work with python 2.x)
-* 36 sound files in /sounds or similar location. Specify the location in the config. I've been using the sounds from http://www.reactor-site.com/samples/reactor_strat.zip specifically those from the Reactor Strat/Reactor Strat Samples/p folder. A word of warning when downloading a library of samples, a few I tried where missing notes including those from other folders mentioned previously. Also they're a bit out of tune. Beware!
+* 36 sound files in /sounds or similar location. Specify the location in the config. I've been using the sounds from http://www.reactor-site.com/samples/reactor_strat.zip specifically those from the Reactor Strat/Reactor Strat Samples/p folder. A word of warning when downloading a library of samples, a few I tried where missing notes including those from other folders mentioned previously. Also they're a bit out of tune. Beware! I've included the sounds but in no way claim any copywrite.
 * Run the commands above
 
 Configuration

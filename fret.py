@@ -69,7 +69,7 @@ class Fret:
             rand_from = 0
             rand_to = 0
             rate = '350'
-        elif args.level == 'impossible' or args.level == 'chuck_norris':
+        elif args.level == 'impossible' or args.level == 'Chuck_Norris':
             playback = '0.01'
             rand_from = 0
             rand_to = 0
@@ -115,11 +115,11 @@ class Fret:
         inclusive = False
 
         parser = argparse.ArgumentParser()
-        parser.add_argument('-d', '--day', default=0)
-        parser.add_argument('-l', '--level', default='easy')
-        parser.add_argument('-i', '--inclusive', help="inclusive",
+        parser.add_argument('-d', '--day', default=0, help='the day of your 12 day challenge')
+        parser.add_argument('-l', '--level', default='easy', help='beginner|easy|medium|hard|impossible')
+        parser.add_argument('-i', '--inclusive', help="Whether the session includes previous days' notes",
                             action="store_true")
-        parser.add_argument('-ns', '--no-sound', help="sound", action="store_true")
+        parser.add_argument('-ns', '--no-sound', help="Don't play note samples", action="store_true")
         args = parser.parse_args()
 
         day = int(args.day)
