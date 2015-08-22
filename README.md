@@ -29,7 +29,8 @@ Inspired by Guitarist / Teacher Mike Walker (http://www.mike-walker.co.uk/)
 
 The default order is open strings first then the other notes. In Mike Walker's
 terms, planetary and orbital notes. The idea is that each planetary note is next
- to and orbital note. You can change the order in the config.
+ to and orbital note. You can change the order in the config. If you slide up to
+ note, you don't know it yet.
 
 Also note that you never play an open string; play the note at the 12 fret instead.
 

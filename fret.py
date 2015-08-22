@@ -48,7 +48,7 @@ class Fret:
         p = ''
         for s in self.order:
             p += self.notes[s] + ' '
-        return p
+        return "( %s)" % p
 
     def play_back_options(self, args):
         rate = '200'
@@ -136,7 +136,10 @@ class Fret:
 
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
 
-        print (self.notes_by_day())
+
+        print ("\nDay %s of 12. Today is %s day\n" % (day, self.notes[self.order[day - 1]]) )
+        print (self.notes_by_day() + '\n')
+        time.sleep(1)
 
         try:
             while True:
