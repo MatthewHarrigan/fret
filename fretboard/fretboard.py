@@ -1,5 +1,6 @@
 def get_index(string, note):
-    notes = ['E','F','F#/Gb','G','G#/Ab','A','A#/Bb', 'B', 'C', 'C#/Db', 'D',  'D#/Eb']
+    notes = ['E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B', 'C', 'C#/Db',
+             'D', 'D#/Eb']
     note_i = notes.index(note)
 
     open_string = 0
@@ -11,7 +12,7 @@ def get_index(string, note):
             return note_i
     elif string == 5:
         if note_i == 5:
-            return 17 
+            return 17
         open_string = 5
     elif string == 4:
         if note_i == 10:
@@ -27,9 +28,9 @@ def get_index(string, note):
         open_string = 19
     elif string == 1:
         if note_i == 0:
-            return 36 
-        open_string = 24 
-        
+            return 36
+        open_string = 24
+
     while note_i < open_string:
         note_i += 12
 
