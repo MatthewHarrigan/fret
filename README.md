@@ -34,14 +34,14 @@ terms, planetary and orbital notes. The idea is that each planetary note is next
 
 Also note that you never play an open string; play the note at the 12 fret instead.
 
-Installation
-------------
+Installation and requirements
+-----------------------------
 
-Requires
-* OS X only
-* python 3 (though it seems to work with python 2.x)
-* 36 sound files in /sounds or similar location. Specify the location in the config. I've been using the sounds from http://www.reactor-site.com/samples/reactor_strat.zip specifically those from the Reactor Strat/Reactor Strat Samples/p folder. A word of warning when downloading a library of samples, a few I tried where missing notes including those from other folders mentioned previously. Also they're a bit out of tune. Beware! I've included the sounds but in no way claim any copywrite.
-* Run the commands above
+* OS X only. Tested on 10.9.5.
+* Up-to-date version of the `say` program that supports rate.
+* Python 3 (https://www.python.org/downloads/)1
+* 36 chromatic sound files starting from low E on the guitar in /sounds or similar location. Specify the location in the config. I've been using the sounds from http://www.reactor-site.com/samples/reactor_strat.zip specifically those from the Reactor Strat/Reactor Strat Samples/p folder. A word of warning when downloading a library of samples, a few I tried where missing notes including those from other folders mentioned previously. Also they're a bit out of tune. Beware! I've included the sounds but in no way claim any copywrite.
+* Run the commands above. I've tested on iterm and terminal on my version of OS X at it seems to work ok.
 
 Configuration
 ------------------
