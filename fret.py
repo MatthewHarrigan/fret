@@ -149,8 +149,6 @@ class Fret:
             # Clear screen
             stdscr.clear()
 
-            stdscr.border(0)
-
             stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (
             day, self.notes[self.order[day - 1]]))
             stdscr.addstr(2, 0, self.notes_by_day() + '\n')
