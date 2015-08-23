@@ -141,35 +141,108 @@ class Fret:
 
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
 
-        print ("\nDay %s of 12. Today is %s day\n" % (
-        day, self.notes[self.order[day - 1]]) )
-        print (self.notes_by_day() + '\n')
-        time.sleep(1)
-
-        try:
-            while True:
-
-                current_string = self.get_current_string()
-
-                file, note = self.get_note_and_file(current_string, day,
-                                                    self.notes)
-
-                out = self.display_string_and_note(current_string, note)
-
-                print (out)
 
 
-                print (display_fretboard(self.string_indices[current_string], note))
+        import curses
+        from curses import wrapper
 
-                self.say_string_and_note(out, rate)
 
-                self.sleep(sleep_from, sleep_to)
+        def main(stdscr):
 
-                if sound:
-                    self.play_sound(file, playback)
+            curses.curs_set(0)
+            # Clear screen
+            stdscr.clear()
 
-        except KeyboardInterrupt:
-            sys.exit(0)
+            stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (day, self.notes[self.order[day - 1]]))
+            stdscr.addstr(2, 0, self.notes_by_day() + '\n')
+            stdscr.refresh()
+
+
+            time.sleep(1)
+
+            try:
+                while True:
+
+                    stdscr.clear()
+
+
+                    current_string = self.get_current_string()
+
+                    file, note = self.get_note_and_file(current_string, day,
+                                                        self.notes)
+
+                    out = self.display_string_and_note(current_string, note)
+
+                    stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (day, self.notes[self.order[day - 1]]))
+
+                    stdscr.addstr(2, 0, self.notes_by_day() + '\n')
+
+                    stdscr.addstr(4, 0, out)
+
+                    stdscr.addstr(6, 0,  display_fretboard(0, 0))
+
+                    stdscr.refresh()
+
+                    self.say_string_and_note(out, rate)
+
+
+
+                    self.sleep(sleep_from, sleep_to)
+
+                    stdscr.addstr(6, 0,  display_fretboard(self.string_indices[current_string], note))
+
+                    stdscr.refresh()
+
+
+                    if sound:
+                        self.play_sound(file, playback)
+
+            except KeyboardInterrupt:
+                sys.exit(0)
+
+            #
+            # stdscr.refresh()
+            #
+            # stdscr.clear()
+            #
+            #
+            # stdscr.addstr(0, 0, 'bye\nbye')
+            #
+            # stdscr.addstr(1, 0, 'bye\nbye')
+            # stdscr.refresh()
+            #
+            # stdscr.getkey()
+
+        wrapper(main)
+        # print ("\nDay %s of 12. Today is %s day\n" % (
+        # day, self.notes[self.order[day - 1]]) )
+        # print (self.notes_by_day() + '\n')
+        # time.sleep(1)
+        #
+        # try:
+        #     while True:
+        #
+        #         current_string = self.get_current_string()
+        #
+        #         file, note = self.get_note_and_file(current_string, day,
+        #                                             self.notes)
+        #
+        #         out = self.display_string_and_note(current_string, note)
+        #
+        #         print (out)
+        #
+        #
+        #         print (display_fretboard(self.string_indices[current_string], note))
+        #
+        #         self.say_string_and_note(out, rate)
+        #
+        #         self.sleep(sleep_from, sleep_to)
+        #
+        #         if sound:
+        #             self.play_sound(file, playback)
+        #
+        # except KeyboardInterrupt:
+        #     sys.exit(0)
 
 
 if __name__ == '__main__':

@@ -3,6 +3,21 @@ from display_fretboard.display_fretboard import display_fretboard
 
 
 class DisplayFretboardTest(unittest.TestCase):
+
+    def test_blank_fretboard(self):
+        string = 0
+        note = 0
+
+        str = ('0 1 2 3 4 5 6 7 8 9 10 11 12 \n'
+               'e | | | | | | | | | | | | \n'
+               'b | | | | | | | | | | | | \n'
+               'g | | | | | | | | | | | | \n'
+               'd | | | | | | | | | | | | \n'
+               'a | | | | | | | | | | | | \n'
+               'e | | | | | | | | | | | | \n')
+
+        self.assertEqual(display_fretboard(string, note), str)
+
     def test_six_string_e(self):
         string = 1
         note = 'D#/Eb'
@@ -55,6 +70,32 @@ class DisplayFretboardTest(unittest.TestCase):
                'g | | | | | | | | | | | | \n'
                'd | | | | | | | | | | | | \n'
                'a | | | | | | | | | | | | \n'
-               'e | | | | | | | | | | | | ')
+               'e | | | | | | | | | | | | \n')
+
+        self.assertEqual(display_fretboard(string, note), str)
+
+    def test_first_string_e(self):
+        string = 2
+        note = 'B'
+
+        str = ('0 1 2 3 4 5 6 7 8 9 10 11 12 \n'
+               'e | | | | | | | | | | | E \n'
+               'b | | | | | | | | | | | | \n'
+               'g | | | | | | | | | | | | \n'
+               'd | | | | | | | | | | | | \n'
+               'a | | | | | | | | | | | | \n'
+               'e | | | | | | | | | | | | \n')
+
+    def test_second_string_b(self):
+        string = 2
+        note = 'B'
+
+        str = ('0 1 2 3 4 5 6 7 8 9 10 11 12 \n'
+               'e | | | | | | | | | | | | \n'
+               'b | | | | | | | | | | | B \n'
+               'g | | | | | | | | | | | | \n'
+               'd | | | | | | | | | | | | \n'
+               'a | | | | | | | | | | | | \n'
+               'e | | | | | | | | | | | | \n')
 
         self.assertEqual(display_fretboard(string, note), str)

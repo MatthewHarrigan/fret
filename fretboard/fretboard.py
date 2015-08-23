@@ -1,4 +1,7 @@
 def get_index(string, note):
+    if string == 0 and note == 0:
+        return -1
+
     notes = ['E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B', 'C', 'C#/Db',
              'D', 'D#/Eb']
     note_i = notes.index(note)

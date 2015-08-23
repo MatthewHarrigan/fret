@@ -4,6 +4,9 @@ from fretboard.fretboard import get_index
 class GetNumberTest(unittest.TestCase):
 
     def test_get_index(self):
+
+        self.assertEqual(get_index(0, 0), -1)
+
         # Open E
         self.assertEqual(get_index(6, 'E'), 12)
 
