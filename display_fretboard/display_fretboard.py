@@ -30,7 +30,6 @@ def display_fretboard(curr_string, curr_note):
             if str_i == curr_string and is_curr_note_open and note_index == open_string_positions[str_i - 1] + 12:
                 output += curr_note + ' '
                 is_curr_note_open = False
-                print (note_index,open_string_positions[str_i - 1] + 12, 'set open to false')
             elif str_i == curr_string and get_index(curr_string, curr_note) == note_index :
                 output += curr_note + ' '
             else:
