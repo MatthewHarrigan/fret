@@ -179,7 +179,7 @@ class Fret:
 
                     stdscr.addstr(4, 0, out)
 
-                    stdscr.addstr(6, 0,  display_fretboard(0, 0))
+                    stdscr.addstr(6, 0,  display_fretboard(0, 0), curses.A_DIM)
 
                     stdscr.refresh()
 
