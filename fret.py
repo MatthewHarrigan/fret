@@ -8,6 +8,7 @@ import sys
 import time
 import curses
 from curses import wrapper
+import re
 
 from list_sound_files.list_sound_files import list_files
 from fretboard.fretboard import get_index
@@ -110,6 +111,19 @@ class Fret:
             self.index_for_first_six += 1
         return current_string
 
+    def fretboard(self, string, note):
+        out = display_fretboard(string, note)
+        out = re.sub(r'\s', '\t', out)
+        return out
+
+    def draw_fretboard_dots(self, stdscr):
+        stdscr.addstr(9, 20, 'o')
+        stdscr.addstr(9, 36, 'o')
+        stdscr.addstr(9, 52, 'o')
+        stdscr.addstr(9, 68, 'o')
+        stdscr.addstr(8, 92, 'o')
+        stdscr.addstr(10, 92, 'o')
+
     def __init__(self):
         self.strings_tmp = list(self.strings)
 
@@ -127,6 +141,8 @@ class Fret:
                             action="store_true")
         parser.add_argument('-ns', '--no-sound', help="Don't play note samples",
                             action="store_true")
+        parser.add_argument('-fb', '--fretboard', help="Show fretboard. Experimental",
+                            action="store_true")
         args = parser.parse_args()
 
         day = int(args.day)
@@ -141,7 +157,13 @@ class Fret:
         else:
             sound = True
 
+        if args.fretboard:
+            show_fretboard = True
+        else:
+            show_fretboard = False
+
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
+
 
         def main(stdscr):
 
@@ -175,7 +197,9 @@ class Fret:
 
                     stdscr.addstr(4, 0, out, curses.A_BOLD)
 
-                    stdscr.addstr(6, 0, display_fretboard(0, 0), curses.A_DIM)
+                    if show_fretboard:
+                        stdscr.addstr(6, 0, self.fretboard(0, 0))
+                        self.draw_fretboard_dots(stdscr)
 
                     stdscr.refresh()
 
@@ -183,8 +207,9 @@ class Fret:
 
                     self.sleep(sleep_from, sleep_to)
 
-                    stdscr.addstr(6, 0, display_fretboard(
-                        self.string_indices[current_string], note))
+                    if show_fretboard:
+                       stdscr.addstr(6, 0, self.fretboard(self.string_indices[current_string], note))
+                       self.draw_fretboard_dots(stdscr)
 
                     stdscr.refresh()
 
