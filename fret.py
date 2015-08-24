@@ -48,11 +48,18 @@ class Fret:
 
         return file, note
 
-    def notes_by_day(self):
+    def notes_by_day(self, day):
         p = ''
+        arrows = ''
         for s in self.order:
-            p += self.notes[s] + ' '
-        return "( %s)" % p
+            p += self.notes[s] + '\t'
+        p += '\n'
+        i = 0
+        for s in self.order:
+            if i < day:
+                p += '^\t'
+            i += 1
+        return "%s" % p
 
     def play_back_options(self, args):
         rate = '200'
@@ -89,7 +96,8 @@ class Fret:
 
     def say_string_and_note(self, out, rate):
         out = out.replace('b', ' flat')
-        call(["say", out, '--rate', rate])
+        call(["say", out])
+        #call(["say", out, '--rate', rate])
 
     def sleep(self, rand_from, rand_to):
         time.sleep(random.uniform(rand_from, rand_to))
@@ -164,7 +172,6 @@ class Fret:
 
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
 
-
         def main(stdscr):
 
             curses.curs_set(0)
@@ -173,7 +180,7 @@ class Fret:
 
             stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (
             day, self.notes[self.order[day - 1]]))
-            stdscr.addstr(2, 0, self.notes_by_day() + '\n')
+            stdscr.addstr(2, 0, self.notes_by_day(day) + '\n')
             stdscr.refresh()
 
             time.sleep(1)
@@ -193,7 +200,7 @@ class Fret:
                     stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (
                     day, self.notes[self.order[day - 1]]))
 
-                    stdscr.addstr(2, 0, self.notes_by_day() + '\n')
+                    stdscr.addstr(2, 0, self.notes_by_day(day) + '\n')
 
                     stdscr.addstr(4, 0, out, curses.A_BOLD)
 
