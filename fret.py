@@ -1,4 +1,5 @@
 from fretboard.fretboard import get_index
+from strings.strings import invert_string_number
 from list_sound_files.list_sound_files import list_files
 from display_fretboard.display_fretboard import display_fretboard
 from subprocess import call
@@ -30,8 +31,8 @@ class Fret:
     sequential_random_index = 0
     index_for_first_six = 0
 
-    start_string = 1
-    end_string = 6
+    to_string = 1
+    from_string = 6
 
     def zero_based_string_to_string_number(self, current_string):
         return self.string_indices[current_string]
@@ -111,16 +112,16 @@ class Fret:
     # Choose a non-repeating string
     # Reset when all the strings have been selected
     def random_string(self):
-        if self.start_string == self.end_string:
-            return self.start_string-1
+        if self.to_string == self.from_string:
+            return self.to_string-1
 
-        reset = self.end_string - self.start_string
+        reset = self.from_string - self.to_string
         # reset run-through strings
         if self.sequential_random_index > reset:
             self.sequential_random_index = 0
             # make a copy of the original string list 
             self.strings_tmp = list(self.strings)
-        current_string = random.choice(self.strings_tmp[self.start_string-1 : self.end_string-1])
+        current_string = random.choice(self.strings_tmp[self.to_string-1 : self.from_string-1])
         self.strings_tmp.remove(current_string)
         self.sequential_random_index += 1
         return current_string
@@ -165,15 +166,15 @@ class Fret:
                             action="store_true")
         parser.add_argument('-fb', '--fretboard', help="Show fretboard. Experimental",
                             action="store_true")
-        parser.add_argument('-s', '--start', default=1, help="Start string")
-        parser.add_argument('-e', '--end', default=6, help="End string")
+        parser.add_argument('-f', '--from-str', default=1, help="from (from) string")
+        parser.add_argument('-t', '--to-str', default=6, help="to (to) string")
 
         args = parser.parse_args()
 
         day = int(args.day)
 
-        self.start_string = int(args.start)
-        self.end_string = int(args.end)
+        self.to_string = invert_string_number(int(args.to_str))
+        self.from_string = invert_string_number(int(args.from_str))
 
         if args.inclusive:
             self.inclusive = True
