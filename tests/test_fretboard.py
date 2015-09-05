@@ -54,7 +54,7 @@ class GetNumberTest(unittest.TestCase):
         self.assertEqual(get_index(3, 'F#/Gb'), 26)
 
         # Open B
-        self.assertEqual(get_index(2, 'B'), 19)
+        self.assertEqual(get_index(2, 'B'), 31)
 
         self.assertEqual(get_index(2, 'C'), 20)
         self.assertEqual(get_index(2, 'C#/Db'), 21)

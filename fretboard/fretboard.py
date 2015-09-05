@@ -27,7 +27,7 @@ def get_index(string, note):
         open_string = 15
     elif string == 2:
         if note_i == 7:
-            return 19
+            return 31
         open_string = 19
     elif string == 1:
         if note_i == 0:
