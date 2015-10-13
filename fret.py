@@ -26,6 +26,7 @@ class Fret:
     string_indices = [6, 5, 4, 3, 2, 1]
     string = ['6th', '5th', '4th', '3rd', '2nd', '1st']
     strings = [0, 1, 2, 3, 4, 5]
+    string_names = ['Low E', '\'A\'', 'D', 'G', 'B', 'High E']
     order = config['order']
     files = []
     sequential_random_index = 0
@@ -98,7 +99,7 @@ class Fret:
         call(["afplay", config['sounds_folder'] + file, "-t", playback])
 
     def display_string_and_note(self, current_string, note):
-        out = '%s string %s\r' % (self.string[current_string], note)
+        out = '%s string %s\r' % (current_string, note)
         return out
 
     def say_string_and_note(self, out, rate):
@@ -168,6 +169,7 @@ class Fret:
                             action="store_true")
         parser.add_argument('-f', '--from-str', default=1, help="from (from) string")
         parser.add_argument('-t', '--to-str', default=6, help="to (to) string")
+        parser.add_argument('-n', '--name', help="Say string name rather than string number", action="store_true")
 
         args = parser.parse_args()
 
@@ -191,7 +193,19 @@ class Fret:
         else:
             show_fretboard = False
 
+        if args.name:
+            say_name = True
+        else:
+            say_name = False
+
         playback, sleep_from, sleep_to, rate = self.play_back_options(args)
+
+        def string_name(current_string, say_name):
+            if say_name:
+                string = self.string_names[current_string]
+            else:
+                string = self.string[current_string]
+            return string
 
         def main(stdscr):
 
@@ -216,19 +230,17 @@ class Fret:
                     file, note = self.get_note_and_file(current_string, day,
                                                         self.notes)
 
-                    out = self.display_string_and_note(current_string, note)
+                    name = string_name(current_string, say_name)
+                    
+                    out = self.display_string_and_note(name, note)
 
                     stdscr.addstr(0, 0, "Day %s of 12. Today is a %s day\n" % (
                     day, self.notes[self.order[day - 1]]))
-
                     stdscr.addstr(2, 0, self.notes_by_day(day) + '\n')
-
                     stdscr.addstr(4, 0, out, curses.A_BOLD)
-
                     if show_fretboard:
                         stdscr.addstr(6, 0, self.fretboard(0, 0))
                         self.draw_fretboard_dots(stdscr)
-
                     stdscr.refresh()
 
                     self.say_string_and_note(out, rate)
@@ -251,4 +263,3 @@ class Fret:
 
 if __name__ == '__main__':
     fret = Fret()
-    fret()
